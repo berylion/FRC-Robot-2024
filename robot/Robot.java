@@ -25,8 +25,8 @@ public class Robot extends TimedRobot {
   Victor frontRight = new Victor(1);
   Victor rearLeft = new Victor(3);
   Victor rearRight = new Victor(5);
-  PWMSparkMax Backintake = new PWMSparkMax(6);
-  PWMSparkMax Upperintake = new PWMSparkMax(2);
+  PWMSparkMax Backintake = new PWMSparkMax(8);
+  PWMSparkMax Upperintake = new PWMSparkMax(7);
 
 
   private Command m_autonomousCommand;
@@ -100,7 +100,7 @@ public class Robot extends TimedRobot {
 
     
  
-
+    //Driving controls (including strafe)
     if(controller.getLeftBumper()){
 
       frontLeft.set(-1);
@@ -126,35 +126,43 @@ public class Robot extends TimedRobot {
       frontRight.set(controller.getRightY());
       rearRight.set(controller.getRightY());
       }
+      //-----------------------------------------------------
+
       //Outer intake (intaking)
-      if(controller.getAButtonPressed()){
-        Backintake.set(-.5);
-        //Upperintake.set(1);
-      } else if(controller.getAButtonReleased()){
-        //Upperintake.set(0);
-        Backintake.set(0);
-      }
-      //Upper intake (intaking)
-      if(controller.getBButtonPressed()){
-        Upperintake.set(1);
-      } else if(controller.getBButtonReleased()){
-        Upperintake.set(0);
-      }
+      //if(controller.getAButtonPressed()){
+      //  Backintake.set(-.5);
+      //  //Upperintake.set(1);
+      //} else if(controller.getAButtonReleased()){
+      //  //Upperintake.set(0);
+      //  Backintake.set(0);
+      //}
+      ////Upper intake (intaking)
+      //if(controller.getBButtonPressed()){
+      //  Upperintake.set(1);
+      //} else if(controller.getBButtonReleased()){
+      //  Upperintake.set(0);
+      //}
       // Outer intake (out taking)
       if(controller.getXButtonPressed()){
-        Backintake.set(.5);
+        Backintake.set(-1);
       } else if(controller.getXButtonReleased()){
         Backintake.set(0);
       }
       //Upper intaking (out taking)
       if(controller.getYButtonPressed()){
-        Upperintake.set(-.5);
+        Upperintake.set(-1);
       } else if(controller.getYButtonReleased()){
         Upperintake.set(0);
       }
-    
+      //----------------------------------------------------
+      
+      
 
     
+
+
+
+
 
 
   } 
