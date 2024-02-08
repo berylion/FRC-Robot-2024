@@ -25,8 +25,11 @@ public class Robot extends TimedRobot {
   Victor frontRight = new Victor(1);
   Victor rearLeft = new Victor(3);
   Victor rearRight = new Victor(5);
-  PWMSparkMax Backintake = new PWMSparkMax(8);
-  PWMSparkMax Upperintake = new PWMSparkMax(7);
+  PWMSparkMax Backintake = new PWMSparkMax(2);
+  PWMSparkMax Upperintake = new PWMSparkMax(6);
+  PWMSparkMax ShooterL = new PWMSparkMax(8);
+  PWMSparkMax ShooterU = new PWMSparkMax(7);
+
 
 
   private Command m_autonomousCommand;
@@ -128,36 +131,32 @@ public class Robot extends TimedRobot {
       }
       //-----------------------------------------------------
 
-      //Outer intake (intaking)
-      //if(controller.getAButtonPressed()){
-      //  Backintake.set(-.5);
-      //  //Upperintake.set(1);
-      //} else if(controller.getAButtonReleased()){
-      //  //Upperintake.set(0);
-      //  Backintake.set(0);
-      //}
-      ////Upper intake (intaking)
-      //if(controller.getBButtonPressed()){
-      //  Upperintake.set(1);
-      //} else if(controller.getBButtonReleased()){
-      //  Upperintake.set(0);
-      //}
-      // Outer intake (out taking)
-      if(controller.getXButtonPressed()){
-        Backintake.set(-1);
-      } else if(controller.getXButtonReleased()){
+        //Backintake (intaking) Upperintake (intaking)
+      if(controller.getBButtonPressed()){
+        Backintake.set(.8);
+        Upperintake.set(.8);
+      } else if(controller.getBButtonReleased()){
         Backintake.set(0);
+        Upperintake.set(0);
       }
-      //Upper intaking (out taking)
-      if(controller.getYButtonPressed()){
-        Upperintake.set(-1);
-      } else if(controller.getYButtonReleased()){
+        //Backintake (out taking) Upperintake (out taking)
+      if(controller.getAButtonPressed()){
+        Backintake.set(-.8);
+        Upperintake.set(-.8);
+      } else if(controller.getAButtonReleased()){
+        Backintake.set(0);
         Upperintake.set(0);
       }
       //----------------------------------------------------
-      
-      
-
+       //Controls both shooters
+      if(controller.getYButton()){
+        ShooterL.set(1);
+        ShooterU.set(1);
+      }
+      if(controller.getXButton()){
+        ShooterL.set(0);
+        ShooterU.set(0);
+      } 
     
 
 
